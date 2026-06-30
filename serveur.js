@@ -11,7 +11,7 @@ app.use(express.json());
 
 const client = new OpenAI({
 
-apiKey: "MET_TA_CLE_ICI"
+apiKey: "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"
 
 });
 
