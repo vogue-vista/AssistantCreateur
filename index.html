@@ -1,29 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Assistant Créateur</title>
+    <title>Assistant Créateur IA</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>🎬 Assistant Créateur</h1>
+<h1>🎬 Assistant Créateur IA</h1>
 
 <p>
-Trouve des idées de vidéos et crée du contenu plus rapidement.
+Crée des idées de vidéos complètes avec l'intelligence artificielle.
 </p>
+
 
 <div class="box">
 
-<h2>Générateur d'idées</h2>
+<h2>Créer une vidéo</h2>
 
-<input id="theme" placeholder="Ton thème (gaming, sport, humour...)">
+<input id="theme" placeholder="Sujet de ta vidéo (ex: gaming, business...)">
 
-<button onclick="generer()">
-Créer une idée
+<select id="plateforme">
+    <option>TikTok</option>
+    <option>YouTube Shorts</option>
+    <option>Instagram Reels</option>
+</select>
+
+<select id="style">
+    <option>Drôle</option>
+    <option>Sérieux</option>
+    <option>Storytelling</option>
+    <option>Éducatif</option>
+</select>
+
+
+<button onclick="creerVideo()">
+Créer ma vidéo 🚀
 </button>
 
-<p id="resultat"></p>
+
+<div id="resultat"></div>
+
 
 </div>
 
