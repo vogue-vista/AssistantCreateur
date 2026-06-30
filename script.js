@@ -1,24 +1,70 @@
-function generer() {
+function creerVideo(){
 
-    console.log("Le bouton marche");
+let theme = document.getElementById("theme").value;
+let plateforme = document.getElementById("plateforme").value;
+let style = document.getElementById("style").value;
 
-    let theme = document.getElementById("theme").value;
 
-    if (theme === "") {
-        document.getElementById("resultat").innerHTML = 
-        "Écris un thème d'abord 😎";
-        return;
-    }
+if(theme == ""){
+alert("Écris un sujet !");
+return;
+}
 
-    let idees = [
-        "Les 5 erreurs que les débutants font en " + theme,
-        "J'ai testé " + theme + " pendant 7 jours",
-        "3 choses que personne ne sait sur " + theme,
-        "Le meilleur conseil pour progresser en " + theme
-    ];
 
-    let hasard = Math.floor(Math.random() * idees.length);
+let resultat = `
 
-    document.getElementById("resultat").innerHTML = idees[hasard];
+<h2>🎬 Ta vidéo</h2>
+
+
+<h3>🔥 Titre :</h3>
+Le secret de ${theme} que personne ne te montre
+
+
+<h3>⚡ Hook :</h3>
+"Arrête de faire ça si tu veux réussir dans ${theme}"
+
+
+<h3>📝 Script :</h3>
+
+Introduction :
+Aujourd'hui je vais te montrer une chose importante sur ${theme}.
+
+Partie 1 :
+Explique le problème principal.
+
+Partie 2 :
+Donne une solution simple et utile.
+
+Fin :
+Abonne-toi pour plus de contenu.
+
+
+<h3>📱 Plateforme :</h3>
+${plateforme}
+
+
+<h3>🎭 Style :</h3>
+${style}
+
+
+<h3>📄 Description :</h3>
+Voici une vidéo sur ${theme}. Découvre les meilleures astuces.
+
+
+<h3>#️⃣ Hashtags :</h3>
+#${theme} #creation #viral
+
+
+<h3>🎥 Plans :</h3>
+- Face caméra
+- Texte à l'écran
+- Images de démonstration
+
+
+`;
+
+
+document.getElementById("resultat").innerHTML=resultat;
+
 
 }
