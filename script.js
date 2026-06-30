@@ -1,4 +1,4 @@
-function creerVideo(){
+async function creerVideo(){
 
 let theme = document.getElementById("theme").value;
 let plateforme = document.getElementById("plateforme").value;
@@ -11,61 +11,85 @@ if(theme == ""){
 }
 
 
-let resultat = `
+let resultat = document.getElementById("resultat");
+
+resultat.innerHTML = `
+<h2>⏳ Création de ta vidéo...</h2>
+<p>L'IA prépare ton script, tes idées et ton plan de contenu.</p>
+`;
+
+
+try {
+
+
+let reponse = await fetch("http://localhost:3000/generer", {
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+
+body: JSON.stringify({
+
+theme: theme,
+plateforme: plateforme,
+style: style
+
+})
+
+
+});
+
+
+let data = await reponse.json();
+
+
+
+resultat.innerHTML = `
 
 <h2>🎬 Ta vidéo complète</h2>
 
 
 <h3>🔥 Titre :</h3>
 
-"7 choses que personne ne te dit sur ${theme}"
+${data.titre}
 
 
-<h3>⚡ Hook (0-3 secondes) :</h3>
+<h3>⚡ Hook :</h3>
 
-"Si tu fais ça dans ${theme}, tu dois absolument arrêter maintenant..."
-
-
-<h3>📝 Script complet :</h3>
+${data.hook}
 
 
-<b>🎙️ Introduction (0-5 secondes)</b>
+<h3>📝 Script :</h3>
 
-"Beaucoup de personnes veulent réussir dans ${theme}, mais elles font souvent les mêmes erreurs.
-Aujourd'hui je vais te montrer les choses importantes que tu dois savoir."
-
-
-<br><br>
-
-<b>📌 Partie 1 - Le problème (5-20 secondes)</b>
-
-"Le plus gros problème avec ${theme}, c'est que beaucoup de personnes commencent sans avoir de plan.
-Elles cherchent des résultats rapides, mais oublient les bases."
+${data.script}
 
 
-<br><br>
+<h3>🎥 Plans à filmer :</h3>
 
-<b>📌 Partie 2 - La solution (20-45 secondes)</b>
-
-"La meilleure façon de progresser est de comprendre les fondamentaux.
-Commence simplement, teste différentes méthodes et améliore-toi chaque jour."
+${data.plans}
 
 
-<br><br>
+<h3>✂️ Montage :</h3>
 
-<b>📌 Partie 3 - Exemple concret (45-60 secondes)</b>
-
-"Imagine une personne qui commence dans ${theme}.
-Au lieu d'abandonner après quelques jours, elle analyse ses erreurs et continue d'apprendre."
+${data.montage}
 
 
-<br><br>
+<h3>📄 Description :</h3>
 
-<b>🎯 Conclusion (fin)</b>
+${data.description}
 
-"Si tu veux progresser dans ${theme}, commence aujourd'hui.
-La régularité est plus importante que la perfection.
-Abonne-toi pour plus de conseils."
+
+<h3>#️⃣ Hashtags :</h3>
+
+${data.hashtags}
+
+
+<h3>💡 Miniature :</h3>
+
+${data.miniature}
 
 
 <h3>📱 Plateforme :</h3>
@@ -78,52 +102,26 @@ ${plateforme}
 ${style}
 
 
-<h3>🎥 Plans à filmer :</h3>
-
-1. Face caméra pour l'introduction
-
-2. Texte animé avec les points importants
-
-3. Images ou vidéos d'exemple
-
-4. Zooms et changements de plans pour garder l'attention
-
-
-<h3>✂️ Montage conseillé :</h3>
-
-- Ajouter des sous-titres automatiques
-
-- Couper les silences
-
-- Changer de plan toutes les 3 à 5 secondes
-
-- Mettre les mots importants en gros texte
-
-- Ajouter une musique légère en arrière-plan
-
-
-<h3>📄 Description :</h3>
-
-"Découvre les meilleures méthodes pour progresser dans ${theme}.
-Cette vidéo explique les erreurs à éviter et les stratégies importantes."
-
-
-<h3>#️⃣ Hashtags :</h3>
-
-#${theme} #createur #viral #astuces #motivation
-
-
-<h3>💡 Idée de miniature :</h3>
-
-Une personne avec une expression forte + un texte court :
-
-"ARRÊTE ÇA !"
-
-
 `;
 
 
-document.getElementById("resultat").innerHTML = resultat;
+}
+
+catch(error){
+
+
+resultat.innerHTML = `
+
+<h2>❌ Erreur</h2>
+
+<p>Impossible de contacter l'IA pour le moment.</p>
+
+`;
+
+console.log(error);
+
+
+}
 
 
 }
