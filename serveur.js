@@ -11,7 +11,7 @@ app.use(express.json());
 
 const client = new OpenAI({
 
-apiKey: "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"
+apiKey: "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"
 
 });
 
